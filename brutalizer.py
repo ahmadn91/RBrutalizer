@@ -7,8 +7,9 @@ def main(argv):
       opts, args = getopt.getopt(argv,'host:port:url:passwords_file:pass_enc_type:username:status_code:')
       try:
         #TODO:This need to be enhanced
-        bruteforcer = brute.Brute(args[1],args[3],args[5],args[7],args[9],args[11],args[13])
-        bruteforcer.brutalize()
+        bruteforcer = brute.Brute(args[1],args[3],args[5],args[7],args[9],args[11])
+        result = bruteforcer.brutalize()
+        print(result)
       except Exception as e:
           print(str(e))
     except getopt.GetoptError as e:
