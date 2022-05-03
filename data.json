@@ -1,8 +1,14 @@
 {
 
-    "tenda":{
-        "url":"/login/Auth",
-        "false":1
+    "Tenda":[
+        {
+            "version":"11.13.01.06",
+            "url":"/LoginCheck",
+            "hash":"base64"
+            
+        }
+    ]
+        
 
-    }
+    
 }
