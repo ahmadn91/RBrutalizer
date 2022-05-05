@@ -11,7 +11,7 @@ under development, compatible with Python3.
 
 How to Run :
 Clone this repository :
-git clone https://github.com/kevinadhiguna/RBrutalizer.git
+git clone https://github.com/ahmadn91/RBrutalizer.git
 
 move into the directory :
 cd RBrutalizer
